@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="/search" method="get">
+        <input id="search" type="text" name="search" placeholder="enter what you want to search">
+        <select name="multi" id="">
+            <option value="and">AND</option>
+            <option value="or">OR</option>
+        </select>
+        <input type="submit" value="Go">
+    </form>
+    
+    <br><br>
+    <table border="2">
+        <tr>
+            <td>^</td>
+            <td>first Name</td>
+        </tr>
+        <tr>
+            <td>~</td>
+            <td>last Name</td>
+        </tr>
+        <tr>
+            <td>$</td>
+            <td>number</td>
+        </tr>
+        <tr>
+            <td>!</td>
+            <td>email</td>
+        </tr>
+        <tr>
+            <td>%</td>
+            <td>city</td>
+        </tr>
+    </table><br><br>
+    <table border="2">
+        
+        <tr>
+            <td>delete checkbox</td>
+            <td>Id</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Designation</td>
+            <td>address1</td>
+            <td>address2</td>
+            <td>email</td>
+            <td>number</td>
+            <td>city</td>
+            <td>Gender</td>
+            <td>zipcode</td>
+            <td>state</td>
+            <td>date of birth</td>
+            <td>delete One</td>
+            <!-- <td>inseted date</td> -->
+            <!-- <p onclick="check_box()">delete many</p> -->
+            <% for(var i=0;i<data.length;i++){ %>
+        </tr>
+        
+            <tr id="<%=data[i].id%>">
+                <td>
+                    <input type="checkbox"  class="checkBox" name="delete1" id="data[i].id">
+                </td>
+                <td style="width: 50px;">
+                    <%=data[i].id%>
+                </td>
+                <td>
+                    <%=data[i].f_name%>
+                </td>
+                <td>
+                    <%=data[i].l_name%>
+                </td>
+                <td>
+                    <%=data[i].designation%>
+                </td>
+                <td>
+                    <%=data[i].address1%>
+                </td>
+                <td>
+                    <%=data[i].address2%>
+                </td>
+                <td>
+                    <%=data[i].email%>
+                </td>
+                <td>
+                    <%=data[i].s_number%>
+                </td>
+                <td>
+                    <%=data[i].city%>
+                </td>
+                <td>
+                    <%=data[i].gender%>
+                </td>
+                <td>
+                    <%=data[i].zipcode%>
+                </td>
+                <td>
+                    <%=data[i].state%>
+                </td>
+                <!-- <td>
+                    <%=data[i].current_time_date%>
+                </td> -->
+                <% var date=new Date(data[i].date_of_birth) %>
+            <td>
+                <%= date.getDate()%>-<%= date.getMonth() %>-<%= date.getFullYear() %>
+            </td>
+            <%
+                var id=data[i].id
+            %>
+            <td>
+                <p id="<%=data[i].id%>"   style="cursor: pointer;" onclick="deleteOne(id)">Delete</p>
+            </td>
+            </tr>
+            
+            <% } %>
+          
+    </table>
+    <script>
+        function deleteOne(id){
+            var text=""
+            console.log(id)
+            if (confirm("Press a button!") == true) {
+                //document.getElementById('id').style.display="none"
+                // fetch(`http://localhost:8002/delete?id=${id}`).then(res=>{
+
+                // }).then(res=>{
+                //     document.getElementById('id').style.display="none"
+                // })
+                
+                //location.reload()
+                // fetch(`http://localhost:8002/fetch`)
+            } else {
+                alert("you cancel the delete");
+            }
+        }
+
+        // function check_box(){
+        //     var abc=[]
+        //     console.log(document.getElementsByName("delete1").id)
+        //     //document.getElementsByClassName("checkBox")
+        //     if(document.getElementsByClassName("checkBox").check == true){
+        //         console.log("inner")
+        //         abc.push(document.getElementsByClassName("checkBox").id)
+        //     }
+        //     console.log(abc)
+        // }
+    </script>
+</body>
+
+</html>
